@@ -14,6 +14,10 @@ class GoogleTranslatePlugin(BasePlugin):
         self.config['url'] = self.config['url'].group(1).replace('.', '-')
 
     def on_post_page(self, output, page, config):
+        # Relative URL (Original language)
+        output = output.replace('%GT_RELATIVE_URL%', page.url)
+
+        # Translation URLs
         regex = r'(href=".+translate\.goog\/(\?.+"md-select__link"))'
         # 1: from href=" to end of line
         # 2: everything after translate.goog/

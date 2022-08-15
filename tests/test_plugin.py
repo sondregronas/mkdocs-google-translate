@@ -9,7 +9,7 @@ def plugin():
     plugin.load_config(
         options={"site_url": 'example.com',
                  'extra': {
-                     'alternate': [{'name': 'English', 'link': '', 'lang': 'en'},
+                     'alternate': [{'name': 'English', 'link': '%GT_RELATIVE_URL%', 'lang': 'en'},
                                    {'name': 'Norsk', 'link': 'https://translate.goog/?_x_tr_sl=en&_x_tr_tl=no', 'lang': 'no'},
                                    {'name': 'test', 'link': 'https://translate.goog/?_x_tr_sl=en&_x_tr_tl=test', 'lang': 'test'}]
                  }},
@@ -20,7 +20,7 @@ def plugin():
 
 html = """
 <li class="md-select__item">
-  <a href="TestPage">
+  <a href="%GT_RELATIVE_URL%">
     English
   </a>
 </li>
@@ -44,9 +44,11 @@ class Page:
 
 def test_plugin(plugin):
     test = plugin.on_post_page(html, Page('TestPage'), None)
+    assert 'href="TestPage"' in str(test)
     assert 'https://example-com.translate.goog/TestPage?_x_tr_sl=en&_x_tr_tl=no' in str(test)
     assert 'https://example-com.translate.goog/TestPage?_x_tr_sl=en&_x_tr_tl=test' in str(test)
 
     test = plugin.on_post_page(html, Page(''), None)  # index
+    assert 'href=""' in str(test)
     assert 'https://example-com.translate.goog/?_x_tr_sl=en&_x_tr_tl=no' in str(test)
     assert 'https://example-com.translate.goog/?_x_tr_sl=en&_x_tr_tl=test' in str(test)

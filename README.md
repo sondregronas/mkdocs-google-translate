@@ -17,9 +17,11 @@ Activate the plugin in `mkdocs.yml` by adding the following lines, replace the v
 ```yml
 extra:
   alternate:
+      # Original Language
     - name: English
       lang: 'en'
-      link: ''
+      link: '%GT_RELATIVE_URL%'  # For relative urls back to original language
+      # Extra languages
     - name: Norsk
       lang: 'no'
       link: 'https://translate.goog/?_x_tr_sl=en&_x_tr_tl=no'
@@ -32,3 +34,6 @@ plugins:
       url: example.com  # optional (required for local testing)
 ```
 > **Note:** If you have no `plugins` entry in your config file yet, you'll likely also want to add the `search` plugin. MkDocs enables it by default if there is no `plugins` entry set, but now you have to enable it explicitly.
+
+## Incompatabilities
+This plugin is somewhat incompatible with the mkdocs feature `navigation.instant`, due to the fact that the page heading never changes with the feature enabled.
