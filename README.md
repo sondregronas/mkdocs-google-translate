@@ -6,11 +6,11 @@
 [![codecov](https://codecov.io/gh/sondregronas/mkdocs-google-translate/branch/main/graph/badge.svg?token=N5IDI7Q4NZ)](https://codecov.io/gh/sondregronas/mkdocs-google-translate)
 [![Buymeacoffee](https://badgen.net/badge/icon/buymeacoffee?icon=buymeacoffee&label)](https://www.buymeacoffee.com/u92RMis)
 
-Add relative paths to Google Translate queries.
+A mkdocs plugin to add relative paths to Google Translate queries
 
 ![img.png](img.png)
 
-`pip install mkdocs-google-translate`
+Install using `pip install mkdocs-google-translate`
 
 ## Usage
 Activate the plugin in `mkdocs.yml` by adding the following lines, replace the values of `_x_tr_sl` and `_x_tr_tl` to match your site:
