@@ -6,6 +6,7 @@ from mkdocs.config import config_options
 class GoogleTranslatePlugin(BasePlugin):
     config_scheme = {
         ('url', config_options.Type(str, default='')),
+        ('relative_url_syntax', config_options.Type(str, default='%GT_RELATIVE_URL%')),
     }
 
     def on_config(self, config):
@@ -15,7 +16,7 @@ class GoogleTranslatePlugin(BasePlugin):
 
     def on_post_page(self, output, page, config):
         # Relative URL (Original language)
-        output = output.replace('%GT_RELATIVE_URL%', page.url)
+        output = output.replace(self.config.get('relative_url_syntax'), page.url)
 
         # Translation URLs
         regex = r'(href=".+translate\.goog\/(\?.+"md-select__link"))'
