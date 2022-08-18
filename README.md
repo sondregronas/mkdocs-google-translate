@@ -4,7 +4,6 @@
 [![PyPi](https://img.shields.io/pypi/v/mkdocs-google-translate)](https://pypi.org/project/mkdocs-google-translate/)
 [![AGPLv3 license](https://img.shields.io/github/license/sondregronas/mkdocs-google-translate)](https://www.gnu.org/licenses/agpl-3.0.en.html)
 [![codecov](https://codecov.io/gh/sondregronas/mkdocs-google-translate/branch/main/graph/badge.svg?token=N5IDI7Q4NZ)](https://codecov.io/gh/sondregronas/mkdocs-google-translate)
-[![Buymeacoffee](https://badgen.net/badge/icon/buymeacoffee?icon=buymeacoffee&label)](https://www.buymeacoffee.com/u92RMis)
 
 A mkdocs plugin to add relative paths to Google Translate queries
 
