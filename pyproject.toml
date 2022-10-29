@@ -1,0 +1,17 @@
+[build-system]
+requires = ["setuptools", "pytest"]
+
+[project]
+name = "mkdocs-google-translate"
+version = "1.1.1"
+keywords = ["mkdocs", "markdown", "google", "translate"]
+description = "A plugin to add relative links to Google Translate queries"
+readme = "README.md"
+requires-python = ">=3.6"
+authors = [{ name = "Sondre Grønås", email = "mail@sondregronas.com" }]
+license = {text = "AGPLv3"}
+
+dependencies = ["mkdocs>=1"]
+
+[project.scripts]
+my-google-translate = "mkdocs_google_translate.plugin:GoogleTranslatePlugin"
