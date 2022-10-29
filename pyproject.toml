@@ -8,13 +8,18 @@ version = "1.1.1"
 keywords = ["mkdocs", "markdown", "google", "translate"]
 description = "A plugin to add relative links to Google Translate queries"
 readme = "README.md"
-requires-python = ">=3.6"
+requires-python = ">=3.7"
 authors = [{ name = "Sondre Grønås", email = "mail@sondregronas.com" }]
 license = {text = "AGPL-3.0-or-later"}
 
 dependencies = [
     "mkdocs>=1"
 ]
+
+[project.urls]
+homepage = "https://github.com/sondregronas/mkdocs-google-translate"
+documentation = "https://github.com/sondregronas/mkdocs-google-translate"
+repository = "https://github.com/sondregronas/mkdocs-google-translate"
 
 [project.optional-dependencies]
 tests = [
