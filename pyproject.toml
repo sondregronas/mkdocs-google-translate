@@ -1,5 +1,6 @@
 [build-system]
-requires = ["setuptools", "pytest"]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
 
 [project]
 name = "mkdocs-google-translate"
@@ -9,9 +10,16 @@ description = "A plugin to add relative links to Google Translate queries"
 readme = "README.md"
 requires-python = ">=3.6"
 authors = [{ name = "Sondre Grønås", email = "mail@sondregronas.com" }]
-license = {text = "AGPLv3"}
+license = {text = "AGPL-3.0-or-later"}
 
-dependencies = ["mkdocs>=1"]
+dependencies = [
+    "mkdocs>=1"
+]
+
+[project.optional-dependencies]
+tests = [
+    'pytest'
+]
 
 [project.scripts]
 my-google-translate = "mkdocs_google_translate.plugin:GoogleTranslatePlugin"
