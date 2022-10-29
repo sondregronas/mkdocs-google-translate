@@ -4,13 +4,32 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "mkdocs-google-translate"
-version = "1.1.1"
+version = "1.1.2"
 keywords = ["mkdocs", "markdown", "google", "translate"]
 description = "A plugin to add relative links to Google Translate queries"
 readme = "README.md"
 requires-python = ">=3.7"
 authors = [{ name = "Sondre Grønås", email = "mail@sondregronas.com" }]
 license = {text = "AGPL-3.0-or-later"}
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Framework :: MkDocs",
+    "Framework :: MkDocs :: Plugins",
+    "License :: OSI Approved :: GNU Affero General Public License v3 or later (AGPLv3+)",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Topic :: Documentation",
+    "Topic :: Software Development :: Documentation",
+    "Topic :: Text Processing :: Markup :: HTML",
+    "Topic :: Text Processing :: Markup :: Markdown"
+]
 
 dependencies = [
     "mkdocs>=1"
@@ -20,11 +39,13 @@ dependencies = [
 homepage = "https://github.com/sondregronas/mkdocs-google-translate"
 documentation = "https://github.com/sondregronas/mkdocs-google-translate"
 repository = "https://github.com/sondregronas/mkdocs-google-translate"
+issues = "https://github.com/sondregronas/mkdocs-google-translate/issues"
+funding = "https://github.com/sponsors/sondregronas"
 
 [project.optional-dependencies]
 tests = [
     'pytest'
 ]
 
-[project.scripts]
-my-google-translate = "mkdocs_google_translate.plugin:GoogleTranslatePlugin"
+[project.entry-points."mkdocs.plugins"]
+google-translate = "mkdocs_google_translate.plugin:GoogleTranslatePlugin"
