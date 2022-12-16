@@ -1,5 +1,5 @@
 # mkdocs-google-translate
-[![Build Status](https://img.shields.io/github/workflow/status/sondregronas/mkdocs-google-translate/CI)](https://github.com/sondregronas/mkdocs-google-translate/)
+[![Build Status](https://img.shields.io/github/actions/workflow/status/sondregronas/mkdocs-google-translate/CI.yml?branch=main)](https://github.com/sondregronas/mkdocs-google-translate/)
 [![GitHub latest commit](https://img.shields.io/github/last-commit/sondregronas/mkdocs-google-translate)](https://github.com/sondregronas/mkdocs-google-translate/commit/)
 [![PyPi](https://img.shields.io/pypi/v/mkdocs-google-translate)](https://pypi.org/project/mkdocs-google-translate/)
 [![AGPLv3 license](https://img.shields.io/github/license/sondregronas/mkdocs-google-translate)](https://www.gnu.org/licenses/agpl-3.0.en.html)
