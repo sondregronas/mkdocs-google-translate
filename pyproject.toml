@@ -27,7 +27,8 @@ classifiers = [
 ]
 
 dependencies = [
-    "mkdocs>=1"
+    "mkdocs>=1",
+    "setuptools"
 ]
 
 [project.urls]
