@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "mkdocs-google-translate"
-version = "1.1.3"
+version = "1.1.4"
 keywords = ["mkdocs", "markdown", "google", "translate"]
 description = "A plugin to add relative links to Google Translate queries"
 readme = "README.md"
