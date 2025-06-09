@@ -2,17 +2,36 @@ import pytest
 
 from mkdocs_google_translate import GoogleTranslatePlugin
 
+base_extra = {
+    "alternate": [
+        {"name": "English", "link": "%GT_RELATIVE_URL%", "lang": "en"},
+        {
+            "name": "Norsk",
+            "link": "https://translate.goog/?_x_tr_sl=en&_x_tr_tl=no",
+            "lang": "no",
+        },
+        {
+            "name": "test",
+            "link": "https://translate.goog/?_x_tr_sl=en&_x_tr_tl=test",
+            "lang": "test",
+        },
+    ]
+}
+
 
 @pytest.fixture
 def plugin():
     plugin = GoogleTranslatePlugin()
+    plugin.load_config(options={"site_url": "example.com", "extra": base_extra})
+    plugin.on_config(plugin.config)
+    return plugin
+
+
+@pytest.fixture
+def plugin_location():
+    plugin = GoogleTranslatePlugin()
     plugin.load_config(
-        options={"site_url": 'example.com',
-                 'extra': {
-                     'alternate': [{'name': 'English', 'link': '%GT_RELATIVE_URL%', 'lang': 'en'},
-                                   {'name': 'Norsk', 'link': 'https://translate.goog/?_x_tr_sl=en&_x_tr_tl=no', 'lang': 'no'},
-                                   {'name': 'test', 'link': 'https://translate.goog/?_x_tr_sl=en&_x_tr_tl=test', 'lang': 'test'}]
-                 }},
+        options={"site_url": "https://example.com/subpath", "extra": base_extra}
     )
     plugin.on_config(plugin.config)
     return plugin
@@ -42,13 +61,33 @@ class Page:
         self.url = page
 
 
-def test_plugin(plugin):
-    test = plugin.on_post_page(html, Page('TestPage'), None)
-    assert 'href="TestPage"' in str(test)
-    assert 'https://example-com.translate.goog/TestPage?_x_tr_sl=en&_x_tr_tl=no' in str(test)
-    assert 'https://example-com.translate.goog/TestPage?_x_tr_sl=en&_x_tr_tl=test' in str(test)
+def test_plugin_location(plugin_location):
+    test = str(plugin_location.on_post_page(html, Page("TestPage"), None))
+    assert (
+        "https://example-com.translate.goog/subpath/TestPage?_x_tr_sl=en&_x_tr_tl=no"
+        in test
+    )
+    assert (
+        "https://example-com.translate.goog/subpath/TestPage?_x_tr_sl=en&_x_tr_tl=test"
+        in test
+    )
 
-    test = plugin.on_post_page(html, Page(''), None)  # index
-    assert 'href=""' in str(test)
-    assert 'https://example-com.translate.goog/?_x_tr_sl=en&_x_tr_tl=no' in str(test)
-    assert 'https://example-com.translate.goog/?_x_tr_sl=en&_x_tr_tl=test' in str(test)
+    test = str(plugin_location.on_post_page(html, Page(""), None))  # index
+    assert "https://example-com.translate.goog/subpath?_x_tr_sl=en&_x_tr_tl=no" in test
+
+    assert (
+        "https://example-com.translate.goog/subpath?_x_tr_sl=en&_x_tr_tl=test" in test
+    )
+
+
+def test_plugin(plugin):
+    test = str(plugin.on_post_page(html, Page("TestPage"), None))
+    assert "https://example-com.translate.goog/TestPage?_x_tr_sl=en&_x_tr_tl=no" in test
+
+    assert (
+        "https://example-com.translate.goog/TestPage?_x_tr_sl=en&_x_tr_tl=test" in test
+    )
+
+    test = str(plugin.on_post_page(html, Page(""), None))  # index
+    assert "https://example-com.translate.goog/?_x_tr_sl=en&_x_tr_tl=no" in test
+    assert "https://example-com.translate.goog/?_x_tr_sl=en&_x_tr_tl=test" in test
