@@ -31,7 +31,7 @@ def plugin():
 def plugin_location():
     plugin = GoogleTranslatePlugin()
     plugin.load_config(
-        options={"site_url": "https://example.com/subpath", "extra": base_extra}
+        options={"site_url": "https://exam-ple.com/subpath", "extra": base_extra}
     )
     plugin.on_config(plugin.config)
     return plugin
@@ -64,19 +64,21 @@ class Page:
 def test_plugin_location(plugin_location):
     test = str(plugin_location.on_post_page(html, Page("TestPage"), None))
     assert (
-        "https://example-com.translate.goog/subpath/TestPage?_x_tr_sl=en&_x_tr_tl=no"
+        "https://exam--ple-com.translate.goog/subpath/TestPage?_x_tr_sl=en&_x_tr_tl=no"
         in test
     )
     assert (
-        "https://example-com.translate.goog/subpath/TestPage?_x_tr_sl=en&_x_tr_tl=test"
+        "https://exam--ple-com.translate.goog/subpath/TestPage?_x_tr_sl=en&_x_tr_tl=test"
         in test
     )
 
     test = str(plugin_location.on_post_page(html, Page(""), None))  # index
-    assert "https://example-com.translate.goog/subpath?_x_tr_sl=en&_x_tr_tl=no" in test
+    assert (
+        "https://exam--ple-com.translate.goog/subpath?_x_tr_sl=en&_x_tr_tl=no" in test
+    )
 
     assert (
-        "https://example-com.translate.goog/subpath?_x_tr_sl=en&_x_tr_tl=test" in test
+        "https://exam--ple-com.translate.goog/subpath?_x_tr_sl=en&_x_tr_tl=test" in test
     )
 
 

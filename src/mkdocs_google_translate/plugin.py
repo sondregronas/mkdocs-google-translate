@@ -4,6 +4,22 @@ from mkdocs.config import config_options
 from mkdocs.plugins import BasePlugin
 
 
+def convert_fqdn_to_gt(fqdn: str) -> str:
+    """
+    Convert a URL to the format used by Google Translate.
+    This function replaces dots with hyphens and single hyphens with double hyphens.
+
+    NOTE: Conversion tuples is probably incomplete.
+    """
+    convert_fqdn_pairs = [
+        ("-", "--"),
+        (".", "-"),
+    ]
+    for old, new in convert_fqdn_pairs:
+        fqdn = fqdn.replace(old, new)
+    return fqdn
+
+
 class GoogleTranslatePlugin(BasePlugin):
     config_scheme = {
         ("url", config_options.Type(str, default="")),
@@ -24,7 +40,7 @@ class GoogleTranslatePlugin(BasePlugin):
         location = f"{location.group(1)}" if location else ""
 
         # FQDN for Google Translate urls use hyphens instead of dots
-        self.fqdn = fqdn.replace(".", "-")
+        self.fqdn = convert_fqdn_to_gt(fqdn)
         self.location = location
 
     def on_post_page(self, output, page, config):
